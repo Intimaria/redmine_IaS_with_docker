@@ -8,8 +8,8 @@ services:
     image: redmine
     restart: always
     volumes:
-      - ./mnt1:/usr/src/redmine/files
-      - ./mnt2:/usr/src/redmine/plugins
+      - redmine_data:/usr/src/redmine/files
+      - ./plugins:/usr/src/redmine/plugins
     ports:
       - 80:3000
     environment:
@@ -27,4 +27,5 @@ services:
       MYSQL_ROOT_PASSWORD: "{{ redmine.db.password }}"
       MYSQL_DATABASE: redmine
 volumes:
+  redmine_data: {}
   db_data: {}
