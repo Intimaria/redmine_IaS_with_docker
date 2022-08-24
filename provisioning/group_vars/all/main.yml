@@ -1,0 +1,7 @@
+redmine:
+  version: 5.0.1
+  path: "/srv/redmine"
+  db:
+    name: redmine
+    username: redmine
+    password: a10ngp455w0rd

@@ -1,0 +1,9 @@
+---
+- name: Setup System
+  hosts: all
+  become: yes
+  become_user: root
+  roles: 
+    - system # APT update && upgrade -y
+    - geerlingguy.docker
+    - docker_setup

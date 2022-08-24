@@ -1,0 +1,5 @@
+- name: remove Docker Compose stack
+  become: yes
+  command: docker-compose down
+  tags: 
+    - remove

@@ -1,0 +1,13 @@
+- name: make plugins directory for bind volume
+  file:
+    path: /home/ubuntu/plugins
+    state: directory
+
+- name: Copy docker-compose file to instance home
+  template: 
+    src: docker-compose.yml.j2
+    dest: /home/ubuntu/docker-compose.yml
+
+- name: deploy Docker Compose stack
+  become: yes
+  command: docker-compose up -d

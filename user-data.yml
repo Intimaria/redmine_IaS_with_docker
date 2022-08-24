@@ -1,0 +1,15 @@
+#cloud-config 
+device_aliases:
+  my_alias: /dev/sda
+fs_setup:
+- label: fs1
+  filesystem: xfs
+  device: my_alias.1
+  cmd: mkfs -t %(filesystem)s -L %(label)s %(device)s
+- label: fs2
+  filesystem: xfs
+  device: my_alias.2
+  cmd: mkfs -t %(filesystem)s -L %(label)s %(device)s
+mounts:
+- ["my_alias.1", "/mnt1"]
+- ["my_alias.2", "/mnt2"]

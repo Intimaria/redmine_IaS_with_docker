@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+
+  redmine:
+    depends_on: 
+      - db
+    image: redmine
+    restart: always
+    volumes:
+      - ./mnt1:/usr/src/redmine/files
+      - ./mnt2:/usr/src/redmine/plugins
+    ports:
+      - 80:3000
+    environment:
+      REDMINE_DB_MYSQL: db
+      REDMINE_DB_PASSWORD: "{{ redmine.db.password }}"
+      REDMINE_SECRET_KEY_BASE: supersecretkey
+      REDMINE_PLUGINS_MIGRATE: 1
+      REDMINE_LANG: es
+  db:
+    image: mysql:5.7
+    volumes: 
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "{{ redmine.db.password }}"
+      MYSQL_DATABASE: redmine
+volumes:
+  db_data: {}
